@@ -6,7 +6,7 @@ export const askElliotCredentials = () => {
     {
       name: 'email',
       type: 'input',
-      message: 'Enter your elliot email address',
+      message: 'Enter your elliot email address:',
       validate: function(value) {
         if (value.length) {
           return true;
@@ -18,7 +18,7 @@ export const askElliotCredentials = () => {
     {
       name: 'password',
       type: 'password',
-      message: 'Enter your password:',
+      message: 'Enter your password: ',
       validate: function(value) {
         if (value.length) {
           return true;
@@ -44,9 +44,9 @@ export const selectDomain = (domainList) => {
 }
 
 export const selectCheckout = (checkOutList) => {
-  if (checkOutList === undefined || checkOutList.length == 0) {
-     return console.log(chalk.yellow("You have no storefront for this domain"))
-  }
+  // if (checkOutList === undefined || checkOutList.length == 0) {
+  //    return console.log(chalk.yellow("You have no storefront for this domain"))
+  // }
   const questions = [
     {
       type: 'rawlist',
