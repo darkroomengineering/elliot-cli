@@ -12,13 +12,13 @@ import path from 'path';
 const conf = new Configstore('elliot-cli');
 
 export default class Deploy extends Command {
-  static description = 'describe the command here'
+  static description = 'Deploy storefront to ZEIT'
 
   async run() {
     elliotDisplay()
 
     const login = await setElliotCredentials()
-    const insDir = `${path.join(__dirname, '../../install.sh')}`
+    const insDir = `${path.join(__dirname, '../../scripts/install.sh')}`
 
     try {
       if (login) {
@@ -33,7 +33,11 @@ export default class Deploy extends Command {
           const tasks = new Listr([
             {
               title: 'Cloning zeit-boilerplate-directory',
-              task: () => execa('git', ['clone', 'https://github.com/helloiamelliot/zeit-checkout-boilerplate'])
+              task: () => execa('git', ['clone', 'https://github.com/helloiamelliot/zeit-checkout-boilerplate']).catch(result =>{
+                if (result.stderr == "fatal: destination path 'zeit-checkout-boilerplate' already exists and is not an empty directory.") {
+                  throw new Error('zeit-checkout-boilerplate directory already exists and is not an empty directory.')
+                }
+              })
             },
             {
               title: 'Install package dependencies with Yarn',
@@ -50,7 +54,6 @@ export default class Deploy extends Command {
               skip: ctx => ctx.yarn !== false && 'Dependencies already installed with Yarn',
               task: (ctx, task) => {
                 task.output = 'Installing dependencies...';
-          
                 return execa(insDir, ['npm'])
               }
             }
@@ -68,8 +71,7 @@ export default class Deploy extends Command {
           "Authentication token expired. Rerun 'elliot deploy' command to login"
         )
       );
-    }
-    
+    }    
   }
 }
 
