@@ -19,7 +19,6 @@ $ npm install -g elliot-cli
 $ elliot COMMAND
 running command...
 $ elliot (-v|--version|version)
-elliot-cli/0.4.30 darwin-x64 node-v13.5.0
 $ elliot --help [COMMAND]
 USAGE
   $ elliot COMMAND
@@ -32,7 +31,7 @@ USAGE
 * [`elliot help [COMMAND]`](#elliot-help-command)
 * [`elliot list`](#elliot-list)
 * [`elliot login`](#elliot-login)
-
+Deploy storefront to ZEIT
 ## `elliot deploy`
 
 Deploy storefront to ZEIT
@@ -42,11 +41,11 @@ USAGE
   $ elliot deploy
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.30/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/deploy.ts)_
 
 ## `elliot help [COMMAND]`
 
-display help for elliot
+Display help for elliot
 
 ```
 USAGE
@@ -75,7 +74,11 @@ OPTIONS
   -s, --storefront           List all storefronts in a domain
 ```
 
+<<<<<<< HEAD
 _See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.30/src/commands/list.ts)_
+=======
+_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/list.ts)_
+>>>>>>> 4d0c5f0f20b4aebee92d4c068f3b890464487fb2
 
 ## `elliot login`
 
@@ -89,5 +92,9 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
+<<<<<<< HEAD
 _See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.30/src/commands/login.ts)_
+=======
+_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/login.ts)_
+>>>>>>> 4d0c5f0f20b4aebee92d4c068f3b890464487fb2
 <!-- commandsstop -->
