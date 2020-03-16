@@ -31,7 +31,6 @@ USAGE
 * [`elliot help [COMMAND]`](#elliot-help-command)
 * [`elliot list`](#elliot-list)
 * [`elliot login`](#elliot-login)
-Deploy storefront to ZEIT
 ## `elliot deploy`
 
 Deploy storefront to ZEIT
