@@ -19,7 +19,6 @@ $ npm install -g elliot-cli
 $ elliot COMMAND
 running command...
 $ elliot (-v|--version|version)
-elliot-cli/0.0.0 darwin-x64 node-v13.5.0
 $ elliot --help [COMMAND]
 USAGE
   $ elliot COMMAND
@@ -28,49 +27,25 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`elliot deploy [FILE]`](#elliot-deploy-file)
-* [`elliot hello [FILE]`](#elliot-hello-file)
+* [`elliot deploy`](#elliot-deploy)
 * [`elliot help [COMMAND]`](#elliot-help-command)
+* [`elliot list`](#elliot-list)
+* [`elliot login`](#elliot-login)
+Deploy storefront to ZEIT
+## `elliot deploy`
 
-## `elliot deploy [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ elliot deploy [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-```
-
-_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.0.0/src/commands/deploy.ts)_
-
-## `elliot hello [FILE]`
-
-describe the command here
+Deploy storefront to ZEIT
 
 ```
 USAGE
-  $ elliot hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ elliot hello
-  hello world from ./src/hello.ts!
+  $ elliot deploy
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/deploy.ts)_
 
 ## `elliot help [COMMAND]`
 
-display help for elliot
+Display help for elliot
 
 ```
 USAGE
@@ -84,4 +59,34 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+
+## `elliot list`
+
+List all domains or storefronts within a domain
+
+```
+USAGE
+  $ elliot list
+
+OPTIONS
+  -d, --domain_id=domain_id  Pass in domain id to list all storefronts with the domain
+  -h, --help                 show CLI help
+  -s, --storefront           List all storefronts in a domain
+```
+
+_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/list.ts)_
+
+## `elliot login`
+
+Authenticate with elliot api
+
+```
+USAGE
+  $ elliot login
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/login.ts)_
 <!-- commandsstop -->
