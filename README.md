@@ -73,7 +73,11 @@ OPTIONS
   -s, --storefront           List all storefronts in a domain
 ```
 
+<<<<<<< HEAD
+_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.30/src/commands/list.ts)_
+=======
 _See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/list.ts)_
+>>>>>>> 4d0c5f0f20b4aebee92d4c068f3b890464487fb2
 
 ## `elliot login`
 
@@ -87,5 +91,9 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
+<<<<<<< HEAD
+_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.30/src/commands/login.ts)_
+=======
 _See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v0.4.29/src/commands/login.ts)_
+>>>>>>> 4d0c5f0f20b4aebee92d4c068f3b890464487fb2
 <!-- commandsstop -->
