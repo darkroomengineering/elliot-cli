@@ -44,9 +44,6 @@ export const selectDomain = (domainList) => {
 }
 
 export const selectCheckout = (checkOutList) => {
-  // if (checkOutList === undefined || checkOutList.length == 0) {
-  //    return console.log(chalk.yellow("You have no storefront for this domain"))
-  // }
   const questions = [
     {
       type: 'rawlist',

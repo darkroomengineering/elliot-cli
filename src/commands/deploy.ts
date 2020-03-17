@@ -8,7 +8,6 @@ import chalk from 'chalk';
 import execa from 'execa';
 import Listr from 'listr';
 import path from 'path';
-import fs from 'fs';
 
 const conf = new Configstore('elliot-cli');
 
@@ -39,7 +38,6 @@ export default class Deploy extends Command {
           const selectedCheckout = checkout.filter(checkout => checkout.name === checkoutDetails.storefront);
           const checkoutId       = selectedCheckout[0].id
           const checkoutName     = selectedCheckout[0].name
-          console.log('++++++++++++++++', setUpEnvDir)
 
           const tasks = new Listr([
             {
