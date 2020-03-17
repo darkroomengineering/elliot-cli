@@ -1,6 +1,6 @@
 {
-  "name": "elliot-cli",
-  "version": "0.4.30",
+  "name": "test-elliot-cli",
+  "version": "1.0.1",
   "author": "kensanni@kensanni",
   "bin": {
     "elliot": "./bin/run"
@@ -47,7 +47,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
     "cows/cowfile",
-    "scripts/install.sh"
+    "scripts/*"
   ],
   "homepage": "https://github.com/helloiamelliot/elliot-cli",
   "keywords": [

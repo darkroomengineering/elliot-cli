@@ -8,6 +8,7 @@ import chalk from 'chalk';
 import execa from 'execa';
 import Listr from 'listr';
 import path from 'path';
+import fs from 'fs';
 
 const conf = new Configstore('elliot-cli');
 
@@ -17,19 +18,29 @@ export default class Deploy extends Command {
   async run() {
     elliotDisplay()
 
-    const login = await setElliotCredentials()
-    const insDir = `${path.join(__dirname, '../../scripts/install.sh')}`
+    const login       = await setElliotCredentials()
+    const insDir      = `${path.join(__dirname, '../../scripts/install.sh')}`
+    const setUpEnvDir = `${path.join(__dirname, '../../scripts/setupEnv.sh')}`
 
     try {
       if (login) {
-        const domains = await getDomains()
-        const params = await selectDomain(domains)
+        const domains        = await getDomains()
+        const params         = await selectDomain(domains)
         const selectedDomain = domains.filter(domain => domain.name === params.domain);
-        const checkout = await getCheckout(selectedDomain[0].id)
+
+        const domainId = selectedDomain[0].id
+        const checkout = await getCheckout(domainId)
+
         if (checkout === undefined || checkout.length === 0) {
           return console.log(chalk.yellow("You have no storefront for this domain"))
         } else {
-          await selectCheckout(checkout)
+
+          const checkoutDetails  = await selectCheckout(checkout)
+          const selectedCheckout = checkout.filter(checkout => checkout.name === checkoutDetails.storefront);
+          const checkoutId       = selectedCheckout[0].id
+          const checkoutName     = selectedCheckout[0].name
+          console.log('++++++++++++++++', setUpEnvDir)
+
           const tasks = new Listr([
             {
               title: 'Cloning zeit-boilerplate-directory',
@@ -56,7 +67,13 @@ export default class Deploy extends Command {
                 task.output = 'Installing dependencies...';
                 return execa(insDir, ['npm'])
               }
-            }
+            },
+            {
+              title: 'Setting up environment variables',
+              task: () => execa(setUpEnvDir, [`${checkoutId}`, `${checkoutName}`, `${domainId}`]).catch(error => {
+                console.log(error)
+              })
+            },
           ]);
           
           tasks.run().catch(err => {
