@@ -43,6 +43,26 @@ const checkoutQuery = `
     }
   }
 `
+
+const apiKeyQuery = `
+  query($id: ID!) {
+    domains(id: $id)  {
+      edges {
+        node {
+          apiKeys {
+            edges {
+              node {
+                id
+                key
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 const authorization = () => {
   let token = getStoredElliotToken()
 ​
@@ -60,37 +80,52 @@ const authorization = () => {
 }
 ​
 ​
-export const login = async (params) => {
+export const login = async (userData) => {
   const login = await fetch({
     query: loginMutation,
-    variables: { email: params.email, password: params.password}
+    variables: { email: userData.email, password: userData.password}
   })
   return login.data.tokenAuth.token
 }
 
 export const getDomains = async () => {
   authorization()
-  const domain = await fetch({
-    query: domainMutaion
-  })
-​
-  let id;
-  const domainArray = domain.data.domains.edges.map(company => ({
-    name: company.node.company.name,
-    value: company.node.company.name,
-    id: company.node.company.id,
-  }))
-  return domainArray
+
+  try {
+    const domain = await fetch({
+      query: domainMutaion
+    })
+  ​
+    let id;
+
+    const domainArray = domain.data.domains.edges.map(({ node: { company } }) => {
+      if (company) {
+        const { name = '', id = '' } = company;
+
+        return ({
+          name,
+          id,
+          value: name,
+        })
+      }
+    }).filter(domain => domain);
+
+    return domainArray
+
+  } catch (error) {
+    console.error(error)
+  }
+  
 }
 ​
-export const getCheckout = async (params) => {
+export const getCheckout = async (domainId) => {
   authorization()
-  const storefront = await fetch({
+  const storefrontFetch = await fetch({
     query: checkoutQuery,
-    variables: { id: params }
+    variables: { id: domainId }
   })
 ​
-  const storefrontArray = storefront.data.domains.edges.map(checkout => {
+  const storefrontArray = storefrontFetch.data.domains.edges.map(checkout => {
     return checkout.node.checkouts.edges
   })
   const checkouts = storefrontArray[0].map(data => ({
@@ -98,4 +133,27 @@ export const getCheckout = async (params) => {
     name: data.node.name
   }))
   return checkouts
+}
+
+export const getApiKey = async (domainId) => {
+  authorization()
+
+  try {
+    const apiKeysFetch = await fetch({
+      query: apiKeyQuery,
+      variables: { id: domainId }
+    })
+
+    const apiKeyArray = apiKeysFetch.data.domains.edges.map(keys => {
+      return keys.node.apiKeys.edges
+    })
+
+    const prodKey = 1
+    const apiKeys = apiKeyArray[0].filter(data => data.node.type === prodKey)
+
+    return apiKeys
+    
+  } catch (error) {
+    console.error(error)
+  }
 }

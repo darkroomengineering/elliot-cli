@@ -29,6 +29,7 @@ USAGE
 * [`elliot help [COMMAND]`](#elliot-help-command)
 * [`elliot list`](#elliot-list)
 * [`elliot login`](#elliot-login)
+* [`elliot logout`](#elliot-logout-file)
 
 ## `elliot deploy`
 
@@ -87,4 +88,19 @@ OPTIONS
 ```
 
 _See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.1/src/commands/login.ts)_
+
+## `elliot logout [FILE]`
+
+Logout from your account
+
+```
+USAGE
+  $ elliot logout
+
+OPTIONS
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/logout.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.1/src/commands/logout.ts)_
 <!-- commandsstop -->

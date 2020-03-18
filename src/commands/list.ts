@@ -82,12 +82,8 @@ export default class List extends Command {
           this.log(table.toString())
         }
       }
-    } catch (error) {
-      console.log(
-        chalk.red(
-          "Authentication token expired. Rerun 'elliot login' command to login"
-        )
-      );
-    }
+    } catch(e) {
+      throw new Error(e)
+    } 
   }
 }
