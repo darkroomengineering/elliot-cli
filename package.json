@@ -1,6 +1,6 @@
 {
   "name": "test-elliot-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "kensanni@kensanni",
   "bin": {
     "elliot": "./bin/run"

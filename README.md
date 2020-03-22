@@ -16,7 +16,7 @@ $ npm install -g test-elliot-cli
 $ elliot COMMAND
 running command...
 $ elliot (-v|--version|version)
-test-elliot-cli/1.0.1 darwin-x64 node-v13.5.0
+test-elliot-cli/1.0.3 darwin-x64 node-v13.5.0
 $ elliot --help [COMMAND]
 USAGE
   $ elliot COMMAND
@@ -29,7 +29,7 @@ USAGE
 * [`elliot help [COMMAND]`](#elliot-help-command)
 * [`elliot list`](#elliot-list)
 * [`elliot login`](#elliot-login)
-* [`elliot logout`](#elliot-logout-file)
+* [`elliot logout`](#elliot-logout)
 
 ## `elliot deploy`
 
@@ -40,7 +40,7 @@ USAGE
   $ elliot deploy
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.1/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.3/src/commands/deploy.ts)_
 
 ## `elliot help [COMMAND]`
 
@@ -73,7 +73,7 @@ OPTIONS
   -s, --storefront           List all storefronts in a domain
 ```
 
-_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.1/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.3/src/commands/list.ts)_
 
 ## `elliot login`
 
@@ -87,9 +87,9 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.1/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.3/src/commands/login.ts)_
 
-## `elliot logout [FILE]`
+## `elliot logout`
 
 Logout from your account
 
@@ -98,9 +98,8 @@ USAGE
   $ elliot logout
 
 OPTIONS
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
 ```
 
-_See code: [src/commands/logout.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.1/src/commands/logout.ts)_
+_See code: [src/commands/logout.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.3/src/commands/logout.ts)_
 <!-- commandsstop -->

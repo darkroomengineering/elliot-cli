@@ -16,10 +16,10 @@ const domainMutaion = `query {
   domains {
       edges {
           node {
-              company {
-                name
-                id
-              }
+            id
+            company {
+              name
+            }
           }
       }
   }
@@ -98,9 +98,9 @@ export const getDomains = async () => {
   ​
     let id;
 
-    const domainArray = domain.data.domains.edges.map(({ node: { company } }) => {
+    const domainArray = domain.data.domains.edges.map(({ node: { company, id } }) => {
       if (company) {
-        const { name = '', id = '' } = company;
+        const { name = '' } = company;
 
         return ({
           name,
