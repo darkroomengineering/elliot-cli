@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd zeit-checkout-boilerplate
+cd elliot-serverless-ecommerce
 
 cp .env.development.template .env.development
 

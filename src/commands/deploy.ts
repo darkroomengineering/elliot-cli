@@ -46,9 +46,9 @@ export default class Deploy extends Command {
             const tasks = new Listr([
               {
                 title: 'Cloning zeit-boilerplate-directory',
-                task: () => execa('git', ['clone', 'https://github.com/helloiamelliot/zeit-checkout-boilerplate']).catch(result =>{
-                  if (result.stderr == "fatal: destination path 'zeit-checkout-boilerplate' already exists and is not an empty directory.") {
-                    throw new Error('zeit-checkout-boilerplate directory already exists and is not an empty directory.')
+                task: () => execa('git', ['clone', 'https://github.com/helloiamelliot/elliot-serverless-ecommerce']).catch(result =>{
+                  if (result.stderr == "fatal: destination path 'elliot-serverless-ecommerce' already exists and is not an empty directory.") {
+                    throw new Error('elliot-serverless-ecommerce directory already exists and is not an empty directory.')
                   }
                 })
               },

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd zeit-checkout-boilerplate
+cd elliot-serverless-ecommerce
 
 if [[ $1 == "npm" ]]; then
   npm install

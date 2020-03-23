@@ -12,11 +12,11 @@ hello-iam-elliot
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g test-elliot-cli
+$ npm install -g helloiamelliot-cli
 $ elliot COMMAND
 running command...
 $ elliot (-v|--version|version)
-test-elliot-cli/1.0.3 darwin-x64 node-v13.5.0
+helloiamelliot-cli/1.0.3 darwin-x64 node-v13.5.0
 $ elliot --help [COMMAND]
 USAGE
   $ elliot COMMAND
