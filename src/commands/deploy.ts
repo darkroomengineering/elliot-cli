@@ -14,8 +14,19 @@ const conf = new Configstore('elliot-cli');
 export default class Deploy extends Command {
   static description = 'Deploy storefront to ZEIT'
 
+  static flags = {
+    env: flags.string({
+      char: 'e', description: 'environment to use',
+      options: ['staging', 'prod'],
+      default: 'prod'
+    })
+  }
+
   async run() {
     elliotDisplay()
+    const {flags} = this.parse(Deploy)
+
+    const env = flags.env
 
     const login       = await setElliotCredentials()
     const insDir      = `${path.join(__dirname, '../../scripts/install.sh')}`
@@ -40,12 +51,12 @@ export default class Deploy extends Command {
             const checkoutId       = selectedCheckout[0].id
             const checkoutName     = selectedCheckout[0].name
   
-            const fetchApiKeys     =  await getApiKey(domainId)
+            const fetchApiKeys     =  await getApiKey(domainId, env)
             const apikeys          =  fetchApiKeys[0].node.key
   
             const tasks = new Listr([
               {
-                title: 'Cloning zeit-boilerplate-directory',
+                title: 'Cloning elliot-serverless-ecommerce repository',
                 task: () => execa('git', ['clone', 'https://github.com/helloiamelliot/elliot-serverless-ecommerce']).catch(result =>{
                   if (result.stderr == "fatal: destination path 'elliot-serverless-ecommerce' already exists and is not an empty directory.") {
                     throw new Error('elliot-serverless-ecommerce directory already exists and is not an empty directory.')
@@ -72,7 +83,7 @@ export default class Deploy extends Command {
               },
               {
                 title: 'Setting up environment variables',
-                task: () => execa(setUpEnvDir, [`${checkoutId}`,`${checkoutName}`,`${domainId}`,`${apikeys}`]).catch(error => {
+                task: () => execa(setUpEnvDir, [`${checkoutId}`,`${checkoutName}`,`${domainId}`,`${apikeys}`, `${env}`]).catch(error => {
                   console.log(error)
                 })
               },

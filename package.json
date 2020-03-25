@@ -1,6 +1,6 @@
 {
   "name": "helloiamelliot-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "kensanni@kensanni",
   "bin": {
     "elliot": "./bin/run"

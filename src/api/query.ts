@@ -2,7 +2,7 @@ import { createApolloFetch } from 'apollo-fetch';
 import { getStoredElliotToken } from '../lib/auth';
 ​
 const fetch = createApolloFetch({
-  uri: 'https://admin-dev.elliot.store/api',
+  uri: 'https://admin.elliot.store/api',
 });
 ​
 const loginMutation = `
@@ -135,7 +135,7 @@ export const getCheckout = async (domainId) => {
   return checkouts
 }
 
-export const getApiKey = async (domainId) => {
+export const getApiKey = async (domainId, env) => {
   authorization()
 
   try {
@@ -148,8 +148,10 @@ export const getApiKey = async (domainId) => {
       return keys.node.apiKeys.edges
     })
 
-    const prodKey = 1
-    const apiKeys = apiKeyArray[0].filter(data => data.node.type === prodKey)
+    let envKey;
+
+    env == "prod" ? envKey=1 : envKey=2
+    const apiKeys = apiKeyArray[0].filter(data => data.node.type === envKey)
 
     return apiKeys
     

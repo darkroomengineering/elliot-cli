@@ -16,7 +16,7 @@ $ npm install -g helloiamelliot-cli
 $ elliot COMMAND
 running command...
 $ elliot (-v|--version|version)
-helloiamelliot-cli/1.0.3 darwin-x64 node-v13.5.0
+helloiamelliot-cli/1.0.4 darwin-x64 node-v13.5.0
 $ elliot --help [COMMAND]
 USAGE
   $ elliot COMMAND
@@ -38,6 +38,91 @@ Deploy storefront to ZEIT
 ```
 USAGE
   $ elliot deploy
+
+OPTIONS
+  -e, --env=staging|prod  [default: prod] environment to use
+```
+
+_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.4/src/commands/deploy.ts)_
+
+## `elliot help [COMMAND]`
+
+display help for elliot
+
+```
+USAGE
+  $ elliot help [COMMAND]
+
+ARGUMENTS
+  COMMAND  command to show help for
+
+OPTIONS
+  --all  see all commands in CLI
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+
+## `elliot list`
+
+List all domains or storefronts within a domain
+
+```
+USAGE
+  $ elliot list
+
+OPTIONS
+  -d, --domain_id=domain_id  Pass in domain id to list all storefronts with the domain
+  -h, --help                 show CLI help
+  -s, --storefront           List all storefronts in a domain
+```
+
+_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.4/src/commands/list.ts)_
+
+## `elliot login`
+
+Authenticate with elliot api
+
+```
+USAGE
+  $ elliot login
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.4/src/commands/login.ts)_
+
+## `elliot logout`
+
+Logout from your account
+
+```
+USAGE
+  $ elliot logout
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/logout.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.4/src/commands/logout.ts)_
+<!-- commandsstop -->
+* [`elliot deploy`](#elliot-deploy)
+* [`elliot help [COMMAND]`](#elliot-help-command)
+* [`elliot list`](#elliot-list)
+* [`elliot login`](#elliot-login)
+* [`elliot logout`](#elliot-logout)
+* [`elliot new [FILE]`](#elliot-new-file)
+
+## `elliot deploy`
+
+Deploy storefront to ZEIT
+
+```
+USAGE
+  $ elliot deploy
+
+OPTIONS
+  -e, --env=staging|prod  [default: prod] environment to use
 ```
 
 _See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.3/src/commands/deploy.ts)_
@@ -102,4 +187,3 @@ OPTIONS
 ```
 
 _See code: [src/commands/logout.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.3/src/commands/logout.ts)_
-<!-- commandsstop -->
