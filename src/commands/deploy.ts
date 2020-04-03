@@ -1,17 +1,14 @@
-import {Command, flags} from '@oclif/command'
-import { elliotDisplay } from '../lib/helpers';
+import { flags } from '@oclif/command'
 import { setElliotCredentials } from '../lib/auth';
 import { getDomains, getCheckout, getApiKey } from '../api/query';
 import { selectDomain, selectCheckout } from '../lib/inquirer';
-import Configstore from 'configstore';
+import Base from '../base';
 import chalk from 'chalk';
 import execa from 'execa';
 import Listr from 'listr';
 import path from 'path';
 
-const conf = new Configstore('elliot-cli');
-
-export default class Deploy extends Command {
+export default class Deploy extends Base {
   static description = 'Deploy storefront to ZEIT'
 
   static flags = {
@@ -23,8 +20,7 @@ export default class Deploy extends Command {
   }
 
   async run() {
-    elliotDisplay()
-    const {flags} = this.parse(Deploy)
+    const { flags } = this.parse(Deploy)
 
     const env = flags.env
 

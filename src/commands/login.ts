@@ -1,12 +1,11 @@
-import {Command, flags} from '@oclif/command'
+import { flags } from '@oclif/command'
 import { setElliotCredentials } from '../lib/auth';
-import { elliotDisplay } from '../lib/helpers';
-import Configstore from 'configstore';
+import Conf from 'conf';
+import Base from '../base';
 
+const config = new Conf();
 
-const conf = new Configstore('elliot-cli');
-
-export default class Login extends Command {
+export default class Login extends Base {
   static description = 'Authenticate with elliot api'
 
   static flags = {
@@ -17,10 +16,8 @@ export default class Login extends Command {
 
   async run() {
     const {args, flags} = this.parse(Login)
-    elliotDisplay()
-    conf.delete('elliot.token')
+    
+    config.delete('elliot.token');
     await setElliotCredentials()
   }
 }
-
-
