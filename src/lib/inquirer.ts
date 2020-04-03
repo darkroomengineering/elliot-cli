@@ -1,5 +1,10 @@
 import * as inquirer from 'inquirer';
 import chalk = require('chalk');
+import Conf from 'conf';
+import colors from 'ansi-colors';
+
+const config = new Conf();
+
 
 export const askElliotCredentials = () => {
   const questions = [
@@ -7,6 +12,7 @@ export const askElliotCredentials = () => {
       name: 'email',
       type: 'input',
       message: 'Enter your elliot email address:',
+      default: config.get('email'),
       validate: function(value) {
         if (value.length) {
           return true;
@@ -28,29 +34,59 @@ export const askElliotCredentials = () => {
       }
     }
   ];
-  return inquirer.prompt(questions);
+  return inquirer.prompt(questions).then((result) => {
+    config.set('email', result.email)
+    return result
+  });
 }
 
 export const selectDomain = (domainList) => {
+  const priorChoices = Array.from(new Set(config.get('domainChoices'))) || [];
+
+  const separator = priorChoices &&
+    priorChoices.length && { role: 'seperator', value: colors.dim('-------------') };
+  const domainChoices = [
+    ...priorChoices,
+    separator,
+    ...domainList.filter((x) => x.name !== priorChoices.includes(x.name))
+  ].filter(Boolean)
+  
   const questions = [
     {
-      type: 'rawlist',
+      type: 'list',
       name: 'domain',
       message: 'Select the domain you want to use',
-      choices: domainList
+      default: config.get('domainChoices'),
+      choices: domainChoices
     }
   ];
-  return inquirer.prompt(questions);
+  return inquirer.prompt(questions).then((result) => {
+    config.set('domainChoices', [result.domain, ...priorChoices].slice(0, 3));
+    return result
+  });
 }
 
 export const selectCheckout = (checkOutList) => {
+  const priorChoices = Array.from(new Set(config.get('checkoutChoices'))) || [];
+  const separator = priorChoices &&
+    priorChoices.length && { role: 'seperator', value: colors.dim('-------------') };
+  const checkoutChoices = [
+    ...priorChoices,
+    separator,
+    ...checkOutList.filter((x) => x.name !== priorChoices.includes(x.name))
+  ].filter(Boolean)
+
   const questions = [
     {
-      type: 'rawlist',
+      type: 'list',
       name: 'storefront',
       message: 'Select the storefront to deploy to ZEIT',
-      choices: checkOutList
+      default: config.get('checkout'),
+      choices: checkoutChoices
     }
   ];
-  return inquirer.prompt(questions);
+  return inquirer.prompt(questions).then((result) => {
+    config.set('checkoutChoices', [result.storefront, ...priorChoices].slice(0, 3))
+    return result
+  });;
 }

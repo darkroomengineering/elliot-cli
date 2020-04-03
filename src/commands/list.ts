@@ -1,15 +1,15 @@
-import {Command, flags} from '@oclif/command'
-import { elliotDisplay } from '../lib/helpers';
+import { flags } from '@oclif/command'
 import { getDomains, getCheckout } from '../api/query';
 import Table  from 'cli-table';
 import chalk from 'chalk';
 import { setElliotCredentials } from '../lib/auth';
+import Base from '../base';
 
 
 
 
 
-export default class List extends Command {
+export default class List extends Base {
   static description = 'List all domains or storefronts within a domain'
 
   static flags = {
@@ -28,8 +28,8 @@ export default class List extends Command {
   }
 
   async run() {
-    const {args, flags} = this.parse(List)
-    elliotDisplay()
+    const { flags } = this.parse(List)
+    
     const login = await setElliotCredentials()
 
     try {

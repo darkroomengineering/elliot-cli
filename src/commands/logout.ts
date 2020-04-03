@@ -1,11 +1,12 @@
-import {Command, flags} from '@oclif/command'
-import { elliotDisplay } from '../lib/helpers';
-import Configstore from 'configstore';
+import { flags } from '@oclif/command'
+import Conf from 'conf';
 import chalk from 'chalk';
+import Base from '../base';
 
-const conf = new Configstore('elliot-cli');
 
-export default class Login extends Command {
+const config = new Conf();
+
+export default class Login extends Base {
   static description = 'Logout from your account'
 
   static flags = {
@@ -16,8 +17,8 @@ export default class Login extends Command {
 
   async run() {
     const {args, flags} = this.parse(Login)
-    elliotDisplay()
-    conf.delete('elliot.token')
+
+    config.delete('elliot.token')
     
     console.log(
       chalk.green(
