@@ -1,7 +1,7 @@
 {
-  "name": "helloiamelliot-cli",
+  "name": "elliot-cli",
   "version": "1.0.5",
-  "author": "kensanni@kensanni",
+  "author": "kensanni",
   "bin": {
     "elliot": "./bin/run"
   },

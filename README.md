@@ -1,9 +1,9 @@
 helloiamelliot-cli
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/helloiamelliot-cli.svg)](https://npmjs.org/package/helloiamelliot-cli)
-[![Downloads/week](https://img.shields.io/npm/dw/helloiamelliot-cli.svg)](https://npmjs.org/package/helloiamelliot-cli)
-[![License](https://img.shields.io/npm/l/helloiamelliot-cli.svg)](https://github.com/helloiamelliot/elliot-cli/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/elliot-cli.svg)](https://npmjs.org/package/helloiamelliot-cli)
+[![Downloads/week](https://img.shields.io/npm/dw/elliot-cli.svg)](https://npmjs.org/package/helloiamelliot-cli)
+[![License](https://img.shields.io/npm/l/elliot-cli.svg)](https://github.com/helloiamelliot/elliot-cli/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -12,11 +12,11 @@ helloiamelliot-cli
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g helloiamelliot-cli
+$ npm install -g elliot-cli
 $ elliot COMMAND
 running command...
 $ elliot (-v|--version|version)
-helloiamelliot-cli/1.0.5 darwin-x64 node-v13.5.0
+elliot-cli/1.0.5 darwin-x64 node-v13.5.0
 $ elliot --help [COMMAND]
 USAGE
   $ elliot COMMAND
