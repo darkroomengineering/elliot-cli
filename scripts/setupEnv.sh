@@ -1,13 +1,41 @@
 #!/usr/bin/env bash
 
-cd elliot-serverless-ecommerce
+cd $5
 
-ELLIOT_STORE_FRONT_ID=$1
-ELLIOT_STORE_FRONT_NAME=$2
-ELLIOT_DOMAIN_ID=$3
-ELLIOT_API_KEY=$4
+remove_git_dir() {
+  remove_dir=(
+  .github
+  .now
+  public
+  CODEOWNERS.md
+  CONTRIBUTING.md
+  CODE_OF_CONDUCT.md
+  README.md
+  SECURITY.md
+  elliot-zeit.jpg
+)
 
-cp .env.development.template .env.development
+  for file in ${remove_dir[@]}
+  do
+    rm -rf $file
+  done
+}
 
-sed -i '' -e "s/ELLIOT_ENV_VARIABLES=[^,]*/ELLIOT_ENV_VARIABLES=$ELLIOT_DOMAIN_ID|$ELLIOT_STORE_FRONT_ID|$ELLIOT_STORE_FRONT_NAME|$ELLIOT_API_KEY/" .env.development
+add_env_vars() {
+  ELLIOT_STORE_FRONT_ID=$1
+  ELLIOT_STORE_FRONT_NAME=$2
+  ELLIOT_DOMAIN_ID=$3
+  ELLIOT_API_KEY=$4
+
+  cp .env.development.template .env.development
+
+  sed -i '' -e "s/ELLIOT_ENV_VARIABLES=[^,]*/ELLIOT_ENV_VARIABLES=$ELLIOT_DOMAIN_ID|$ELLIOT_STORE_FRONT_ID|$ELLIOT_STORE_FRONT_NAME|$ELLIOT_API_KEY/" .env.development
+}
+
+main() {
+  remove_git_dir
+  add_env_vars
+}
+
+main
 

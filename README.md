@@ -16,7 +16,7 @@ $ npm install -g elliot-cli
 $ elliot COMMAND
 running command...
 $ elliot (-v|--version|version)
-elliot-cli/1.0.5 darwin-x64 node-v13.5.0
+elliot-cli/1.1.0 darwin-x64 node-v13.5.0
 $ elliot --help [COMMAND]
 USAGE
   $ elliot COMMAND
@@ -25,25 +25,25 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`elliot deploy`](#elliot-deploy)
+* [`elliot deploy [DIRECTORY]`](#elliot-deploy-directory)
 * [`elliot help [COMMAND]`](#elliot-help-command)
 * [`elliot list`](#elliot-list)
 * [`elliot login`](#elliot-login)
 * [`elliot logout`](#elliot-logout)
 
-## `elliot deploy`
+## `elliot deploy [DIRECTORY]`
 
 Deploy storefront to ZEIT
 
 ```
 USAGE
-  $ elliot deploy
+  $ elliot deploy [DIRECTORY]
 
 OPTIONS
   -e, --env=staging|prod  [default: prod] environment to use
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.5/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.1.0/src/commands/deploy.ts)_
 
 ## `elliot help [COMMAND]`
 
@@ -76,7 +76,7 @@ OPTIONS
   -s, --storefront           List all storefronts in a domain
 ```
 
-_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.5/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.1.0/src/commands/list.ts)_
 
 ## `elliot login`
 
@@ -90,7 +90,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.5/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.1.0/src/commands/login.ts)_
 
 ## `elliot logout`
 
@@ -104,7 +104,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/logout.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.0.5/src/commands/logout.ts)_
+_See code: [src/commands/logout.ts](https://github.com/helloiamelliot/elliot-cli/blob/v1.1.0/src/commands/logout.ts)_
 <!-- commandsstop -->
 * [`elliot deploy`](#elliot-deploy)
 * [`elliot help [COMMAND]`](#elliot-help-command)

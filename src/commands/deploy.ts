@@ -11,6 +11,10 @@ import path from 'path';
 export default class Deploy extends Base {
   static description = 'Deploy storefront to ZEIT'
 
+  static args = [
+    {name: 'Directory'},
+  ]
+
   static flags = {
     env: flags.string({
       char: 'e', description: 'environment to use',
@@ -20,7 +24,16 @@ export default class Deploy extends Base {
   }
 
   async run() {
+    const { argv } = this.parse(Deploy)
     const { flags } = this.parse(Deploy)
+    
+    let headlesspkgDir = argv[0];
+    
+    if (headlesspkgDir == undefined) {
+      headlesspkgDir = 'elliot-serverless-ecommerce'
+    }
+
+    console.log(`running my command with args: ${headlesspkgDir}`)
 
     const env = flags.env
 
@@ -53,7 +66,7 @@ export default class Deploy extends Base {
             const tasks = new Listr([
               {
                 title: 'Cloning elliot-serverless-ecommerce repository',
-                task: () => execa('git', ['clone', 'https://github.com/helloiamelliot/elliot-serverless-ecommerce']).catch(result =>{
+                task: () => execa('git', ['clone', 'https://github.com/helloiamelliot/elliot-serverless-ecommerce', `${headlesspkgDir}`]).catch(result =>{
                   if (result.stderr == "fatal: destination path 'elliot-serverless-ecommerce' already exists and is not an empty directory.") {
                     throw new Error('elliot-serverless-ecommerce directory already exists and is not an empty directory.')
                   }
@@ -74,12 +87,12 @@ export default class Deploy extends Base {
                 skip: ctx => ctx.yarn !== false && 'Dependencies already installed with Yarn',
                 task: (ctx, task) => {
                   task.output = 'Installing dependencies...';
-                  return execa(insDir, ['npm'])
+                  return execa(insDir, ['npm', `${headlesspkgDir}`])
                 }
               },
               {
                 title: 'Setting up environment variables',
-                task: () => execa(setUpEnvDir, [`${checkoutId}`,`${checkoutName}`,`${domainId}`,`${apikeys}`, `${env}`]).catch(error => {
+                task: () => execa(setUpEnvDir, [`${checkoutId}`,`${checkoutName}`,`${domainId}`,`${apikeys}`,`${headlesspkgDir}`]).catch(error => {
                   console.log(error)
                 })
               },

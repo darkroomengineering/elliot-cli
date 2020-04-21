@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd elliot-serverless-ecommerce
+cd $2
 
 if [[ $1 == "npm" ]]; then
   npm install
