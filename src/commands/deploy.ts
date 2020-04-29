@@ -9,7 +9,7 @@ import Listr from 'listr';
 import path from 'path';
 
 export default class Deploy extends Base {
-  static description = 'Deploy storefront to ZEIT'
+  static description = 'Deploy storefront to Varcel'
 
   static args = [
     {name: 'Directory'},
@@ -32,8 +32,6 @@ export default class Deploy extends Base {
     if (headlesspkgDir == undefined) {
       headlesspkgDir = 'elliot-serverless-ecommerce'
     }
-
-    console.log(`running my command with args: ${headlesspkgDir}`)
 
     const env = flags.env
 
